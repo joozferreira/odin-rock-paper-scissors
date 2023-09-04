@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+}
+
+body {
+  background-color: rgb(63, 61, 61);
+  height: 100vh;
+}
+
+h1 {
+  color: whitesmoke;
+  padding: 50px;
+}
+
+h2 {
+  padding-bottom: 50px;
+  color: white;
+}
+
+hr {
+  border: 5px solid #fff;
+  width: 80%;
+  margin-left: 10%;
+  border-radius: 5px;
+}
+
+h3 {
+  color: #ff1010;
+  font-size: 3rem;
+  margin: 50px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5vw;
+}
+
+button {
+  background-color: transparent;
+  padding: 15px;
+  border: goldenrod 2px solid;
+  border-radius: 6px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.icon {
+  width: 100px;
+  height: auto;
+}
+
+.icon:hover {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+  /* https://isotropic.co/tool/hex-color-to-css-filter/ */
+  transform: scale(1.1);
+}
+
+footer {
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  color: #fff;
+}
