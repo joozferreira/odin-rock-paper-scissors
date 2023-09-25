@@ -10,16 +10,31 @@ function getComputerChoice() {
   }
 }
 
+let userChoice;
+
+// Add event listener to buttons
+// To remember that getElementsByClassName doesn't generate an Array but an HTML Collection
+// This means that forEach method cannot be applied directly
+// Therefore I converted it to an Array using .from
+// It would also be possible to iterate through a for loop
+const buttons = document.getElementsByClassName("icon");
+
+Array.from(buttons).forEach( (button) => {
+  button.addEventListener("click", (event) => userChoice = event.target.getAttribute("id"));
+});
+
+
+// ----------- TO BE USED ON NON-UI VERSION ----------- //
 // Function to retrieve play from user
 // Option for a do while loop to avoid inclusion of unexpected values
-function getPlayerChoice() {
-  let userChoice;
-  do {
-    let playerInput = prompt("Define your hand: ");
-    userChoice = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase();
-  } while (userChoice != "Rock" && userChoice != "Paper" && userChoice != "Scissors");
-  return userChoice;
-}
+// function getPlayerChoice() {
+//   let userChoice;
+//   do {
+//     let playerInput = prompt("Define your hand: ");
+//     userChoice = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase();
+//   } while (userChoice != "Rock" && userChoice != "Paper" && userChoice != "Scissors");
+//   return userChoice;
+// }
 
 // Function to determine the outcome of a round
 function playRound(playerSelection, computerSelection) {
