@@ -5,23 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Rock Paper Scissors</title>
   </head>
   <body>
     <header>
       <h1>Rock Paper Scissors Game</h1>
-      <h2>Will you challenge the machine for this first to five match?</h2>
+      <h2>Press Space to start this first to five match</h2>
     </header>
     <hr />
     <main>
-      <h3 id="score">HUMAN 3 MACHINE 4</h3>
+      <h3 id="score"></h3>
       <div class="buttons">
         <button>
           <img
             src="./images/svg/hand-rock-svgrepo-com.svg"
             alt="Rock"
             class="icon"
+            id="rock"
           />
         </button>
         <button>
@@ -29,6 +33,7 @@
             src="./images/svg/hand-paper-svgrepo-com.svg"
             alt="paper"
             class="icon"
+            id="paper"
           />
         </button>
         <button>
@@ -36,9 +41,20 @@
             src="./images/svg/hand-scissors-svgrepo-com.svg"
             alt="scissors"
             class="icon"
+            id="scissors"
           />
         </button>
       </div>
+      <section class="summary hidden">
+        <table>
+          <thead>
+            <th>Turn #</th>
+            <th>Your Input</th>
+            <th>Computer Input</th>
+            <th>Score</th>
+          </thead>
+        </table>
+      </section>
     </main>
     <footer>
       <p>Developed as part of &copy; The Odin Project</p>
