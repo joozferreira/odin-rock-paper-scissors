@@ -1,16 +1,25 @@
-// Function to generate Computer play
-function getComputerChoice() {
-  let choice = Math.floor(Math.random() * 3);
-  if (choice === 0) {
-    return "Rock";
-  } else if (choice === 1) {
-    return "Paper";
-  } else {
-    return "Scissors";
-  }
-}
-
+// Definition of variables
 let userChoice;
+const playOptions = ['rock', 'paper', 'scissors'];
+let gameStarted = false;
+let userScore = 0;
+let computerScore = 0;
+
+// Start of the Game when Space key is pressed
+document.addEventListener("keyup", function(event) {
+  if (event.key === " ") {
+    if (!gameStarted) {
+      gameStarted = true;
+      playGame();
+    }
+  }
+});
+
+// Function to generate Computer play
+let computerChoice = function getComputerChoice() {
+  let choice = Math.floor(Math.random() * 3);
+  return playOptions[choice];
+}
 
 // Add event listener to buttons
 // To remember that getElementsByClassName doesn't generate an Array but an HTML Collection
@@ -18,11 +27,61 @@ let userChoice;
 // Therefore I converted it to an Array using .from
 // It would also be possible to iterate through a for loop
 const buttons = document.getElementsByClassName("icon");
+const roundScore = document.getElementById("round-result");
+const currentScore = document.getElementById("score");
 
 Array.from(buttons).forEach( (button) => {
-  button.addEventListener("click", (event) => userChoice = event.target.getAttribute("id"));
+  button.addEventListener("click", playerSelection);
 });
 
+function playerSelection() {
+  userChoice = this.getAttribute("id");
+}
+
+function playGame() {
+  
+}
+
+function roundWinner(player, computer) {
+  if (player === computer) {
+    roundScore.textContent = "It's a tie, let's keep playing!"
+    return;
+  }
+  
+  switch (player) {
+    case 'rock':
+      if (computer === 'scissors') {
+        roundScore.textContent = "You broke it in two! You rock!";
+        userScore++;
+      } else {
+        roundScore.textContent = "He turned you into a Christmas gift!";
+        computerScore++;
+      };
+      break;
+    case 'paper':
+      if (computer === 'rock') {
+        roundScore.textContent = "We just wrapped this, no way we are losing!";
+        userScore++;
+      } else {
+        roundScore.textContent = "You were cut to pieces, what a shame!";
+        computerScore++;
+      };
+      break;
+    case 'scissors':
+      if (computer === 'paper') {
+        roundScore.textContent = "Better find some glue for him!";
+        userScore++;
+      } else {
+        roundScore.textContent = "That gotta have hurt!";
+        computerScore++;
+      };
+      break;
+  }
+}
+
+function updateScore(player, computer) {
+  currentScore.textContent = `Player ${userScore} - Computer ${computerScore}`;
+}
 
 // ----------- TO BE USED ON NON-UI VERSION ----------- //
 // Function to retrieve play from user
@@ -37,33 +96,33 @@ Array.from(buttons).forEach( (button) => {
 // }
 
 // Function to determine the outcome of a round
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === "Rock") {
-    if (computerSelection === "Rock") {
-      return "It's a tie, you both selected Rock";
-    } else if (computerSelection === "Paper") {
-      return "You lose, Paper beats Rock";
-    } else {
-      return "You won, Rock beats Scissors";
-    }
-  } else if (playerSelection === "Paper") {
-    if (computerSelection === "Rock") {
-      return "You won, Paper beats Rock";
-    } else if (computerSelection === "Paper") {
-      return "It's a tie, you both selected Paper";
-    } else {
-      return "You lose, Scissors beats Paper";
-    }
-  } else {
-    if (computerSelection === "Rock") {
-      return "You lose, Rock beats Scissors";
-    } else if (computerSelection === "Paper") {
-      return "You won, Scissors beats Paper";
-    } else {
-      return "It's a tie, you both selected Scissors";
-    }
-  }
-}
+// function playRound(playerSelection, computerSelection) {
+//   if (playerSelection === "Rock") {
+//     if (computerSelection === "Rock") {
+//       return "It's a tie, you both selected Rock";
+//     } else if (computerSelection === "Paper") {
+//       return "You lose, Paper beats Rock";
+//     } else {
+//       return "You won, Rock beats Scissors";
+//     }
+//   } else if (playerSelection === "Paper") {
+//     if (computerSelection === "Rock") {
+//       return "You won, Paper beats Rock";
+//     } else if (computerSelection === "Paper") {
+//       return "It's a tie, you both selected Paper";
+//     } else {
+//       return "You lose, Scissors beats Paper";
+//     }
+//   } else {
+//     if (computerSelection === "Rock") {
+//       return "You lose, Rock beats Scissors";
+//     } else if (computerSelection === "Paper") {
+//       return "You won, Scissors beats Paper";
+//     } else {
+//       return "It's a tie, you both selected Scissors";
+//     }
+//   }
+// }
 
 // Function to play a 5 round game
 // Use of includes method for strings to control the result of each round
