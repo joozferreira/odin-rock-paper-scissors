@@ -7,35 +7,37 @@
 
 body {
   /* background created using https://www.svgbackgrounds.com/ */
-  background-color: #FF4141;
+  background-color: #d25f5f;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23de9636' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23d88431' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23cf8f55' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23c0723f' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23d67b5f' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23f55a1b' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23e2615a' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d46b35' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23d87871' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e76228' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23d46e7e' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%238b2c4f' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
   height: 100vh;
-  font-family: 'Press Start 2P', cursive, sans-serif;
+  font-family: "Press Start 2P", cursive, sans-serif;
 }
 
 h1 {
   color: #f5f5f5;
   padding: 50px;
+  font-size: 1.5em;
 }
 
 h2 {
   padding-bottom: 50px;
   color: #ffffff;
+  font-size: 1.2em;
 }
 
 hr {
-  border: 5px solid #ffffff;
+  border: 3px solid #ffffff;
   width: 80%;
   margin-left: 10%;
   border-radius: 5px;
 }
 
 h3 {
-  color: #ff1010;
-  font-size: 3rem;
-  margin: 50px;
+  color: #362828;
+  font-size: 1.1em;
+  margin: 25px;
 }
 
 .buttons {
@@ -44,6 +46,13 @@ h3 {
   justify-content: center;
   gap: 5vw;
   margin-bottom: 3em;
+}
+
+@media only screen and (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 button {
@@ -59,7 +68,7 @@ button:hover {
   border: rgba(255, 255, 255, 1) 10px solid;
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
     brightness(102%) contrast(102%);
-    /* https://isotropic.co/tool/hex-color-to-css-filter/ */
+  /* https://isotropic.co/tool/hex-color-to-css-filter/ */
 }
 
 .icon {
@@ -73,10 +82,9 @@ button:hover {
   justify-content: center;
 }
 
-
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 footer {
   position: fixed;
