@@ -11,7 +11,9 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23de9636' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23d88431' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23cf8f55' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23c0723f' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23d67b5f' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23f55a1b' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23e2615a' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d46b35' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23d87871' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e76228' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23d46e7e' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%238b2c4f' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
   background-attachment: fixed;
   background-size: cover;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: "Press Start 2P", cursive, sans-serif;
 }
 
@@ -80,6 +82,12 @@ button:hover {
 .summary {
   display: flex;
   justify-content: center;
+  font-size: 0.7em;
+}
+
+th, td {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .hidden {
@@ -87,9 +95,9 @@ button:hover {
 }
 
 footer {
-  position: fixed;
   width: 100vw;
+  margin-top: auto;
   padding: 10px;
-  bottom: 0;
   color: #fff;
+  font-size: 0.5em;
 }
