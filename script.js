@@ -17,7 +17,7 @@ let userScore, computerScore;
 let round = 0;
 const playOptions = ['rock', 'paper', 'scissors'];
 let gameStarted = false;
-const buttons = document.getElementsByClassName("icon");
+const buttons = document.getElementsByTagName("button");
 const h1 = document.querySelector("h1");
 const h2 = document.querySelector("h2");
 const roundScore = document.getElementById("round-result");
@@ -52,14 +52,16 @@ document.addEventListener("keyup", function(event) {
 // Start of game activates the buttons
 function playGame() {
   Array.from(buttons).forEach( (button) => {
-    button.addEventListener("click", playRound );
+    button.addEventListener("click", playRound);
   });
 }
 
 function playRound(e) {
   round++;
   table.classList.remove("hidden");
-  playerSelection = e.target.getAttribute("id");
+  playerSelection = this.getAttribute("id");
+  // Using this instead of e.target ensures we are pointing to the button even when clicking the icon
+  // Explanation on https://fr.javascript.info/bubbling-and-capturing
   computerChoice = getComputerChoice();
   roundWinner(playerSelection, computerChoice);
   updateScore(userScore, computerScore);
