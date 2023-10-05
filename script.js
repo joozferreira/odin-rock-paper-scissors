@@ -28,6 +28,7 @@ const table = document.getElementById("table");
 document.addEventListener("keyup", function(event) {
   if (event.key === " ") {
     if (!gameStarted) {
+      resetChoices();
       gameStarted = true;
       table.classList.add("hidden");
       if (document.getElementById("rounds-data") !== null) {
