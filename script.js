@@ -12,6 +12,7 @@ NOTE: Work so that the only global variable is gameStarted, all others can be de
 
 // Global variable
 let playerSelection = '';
+let computerChoice = '';
 let userScore, computerScore;
 let round = 0;
 const playOptions = ['rock', 'paper', 'scissors'];
@@ -28,6 +29,16 @@ document.addEventListener("keyup", function(event) {
   if (event.key === " ") {
     if (!gameStarted) {
       gameStarted = true;
+      table.classList.add("hidden");
+      if (document.getElementById("rounds-data") !== null) {
+        while (document.getElementById("rounds-data").firstChild) {
+          document.getElementById("rounds-data").removeChild(document.getElementById("rounds-data").firstChild);
+        }
+      } else {
+        const tbody = document.createElement("tbody");
+        tbody.setAttribute("id", "rounds-data");
+        table.appendChild(tbody);
+      }
       h2.textContent = "Select one of the three options below";
       userScore = 0;
       computerScore = 0;
@@ -47,11 +58,13 @@ function playGame() {
 
 function playRound(e) {
   round++;
+  table.classList.remove("hidden");
   playerSelection = e.target.getAttribute("id");
   computerChoice = getComputerChoice();
   roundWinner(playerSelection, computerChoice);
   updateScore(userScore, computerScore);
-  updateTable(playerSelection, computerChoice, userScore, computerScore);
+  updateTable(round, playerSelection, computerChoice, userScore, computerScore);
+  resetChoices();
   checkEndOfMatch(userScore, computerScore);
 }
 
@@ -61,6 +74,25 @@ function getComputerChoice() {
   return playOptions[choice];
 }
 
+
+// Function to update the table with result of the round
+function updateTable(round, pSelection, cSelection, pScore, cScore) {
+  const newRow = document.createElement('tr');
+  const newRound = document.createElement('td');
+  const newPlayerSelection = document.createElement('td');
+  const newComputerSelection = document.createElement('td');
+  const newScore = document.createElement('td');
+  newRound.textContent = round;
+  newPlayerSelection.textContent = pSelection;
+  newComputerSelection.textContent = cSelection;
+  newScore.textContent = `${pScore} - ${cScore}`;
+  newRow.appendChild(newRound);
+  newRow.appendChild(newPlayerSelection);
+  newRow.appendChild(newComputerSelection);
+  newRow.appendChild(newScore);
+  const roundsData = document.getElementById("rounds-data");
+  roundsData.appendChild(newRow);
+}
 
 // Function to check end of the match
 function checkEndOfMatch(user, computer) {
@@ -75,6 +107,7 @@ function checkEndOfMatch(user, computer) {
       roundScore.textContent = "What a shame, you were beaten!";
     }
     h2.textContent = "Press Space to play again!";
+    round = 0;
   }
 }
 
@@ -87,8 +120,7 @@ function resetChoices() {
 // Function to check the winner of each round and update the current result
 function roundWinner(player, computer) {
   if (player === computer) {
-    roundScore.textContent = "It's a tie, let's keep playing!"
-    resetChoices()
+    roundScore.textContent = "It's a tie, let's keep playing!";
     return;
   }
   
@@ -101,7 +133,6 @@ function roundWinner(player, computer) {
         roundScore.textContent = "He turned you into a Christmas gift!";
         computerScore++;
       };
-      resetChoices();
       break;
     case 'paper':
       if (computer === 'rock') {
@@ -111,7 +142,6 @@ function roundWinner(player, computer) {
         roundScore.textContent = "You were cut to pieces, what a shame!";
         computerScore++;
       };
-      resetChoices();
       break;
     case 'scissors':
       if (computer === 'paper') {
@@ -121,7 +151,6 @@ function roundWinner(player, computer) {
         roundScore.textContent = "That gotta have hurt!";
         computerScore++;
       };
-      resetChoices();
       break;
   }
 }
