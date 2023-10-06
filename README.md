@@ -21,6 +21,5 @@ JS constructs/methods:
 7. Text edited on the interface using .textContent;
 
 TODO:
-1. Interface (HTML + CSS mainly);
-2. Add do while loop to prevent ties;
-3. Update playRound function to return 1, 0, -1 and use template literals for the interface output
+1. Add hidden button on laptops/desktops. Button should allow start of game on mobile devices.
+2. Style table for results
